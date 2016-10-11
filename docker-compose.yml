@@ -1,0 +1,20 @@
+version: '2'
+services:
+  prometheus:
+    image: qnib/prometheus
+    hostname: prometheus
+    container_name: prometheus
+    ports:
+     - 9090:9090
+
+  cadvisor: 
+    hostname: cadvisor
+    container_name: cadvisor
+    image: google/cadvisor:latest
+    volumes:
+     - /:/rootfs:ro
+     - /var/run:/var/run:rw
+     - /sys:/sys:ro
+     - /var/lib/docker/:/var/lib/docker:ro
+    ports:
+     - 8080:8080
